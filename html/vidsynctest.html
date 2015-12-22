@@ -1,0 +1,17 @@
+<html>
+    <head>
+        <title>Videosync</title>
+        <script src="/js/jquery.min.js"></script>
+    </head>
+    <body>
+        <div id="biebsplayer"></div>
+        <script src="/socket.io/socket.io.js"></script>
+        <script>
+            function ready() {
+                console.log(io);
+                var vid = Sync("PfGaX8G0f2E", "biebsplayer", io);
+            }
+        </script>
+        <script src="/js/watchparty.js"></script>
+    </body>
+</html>

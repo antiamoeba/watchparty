@@ -1,0 +1,151 @@
+html, body, div, iframe, h1, h2, h3, h4, p, a, img, center, ol, ul, li, form, table, tr, th, td, embed, footer, header, menu, nav {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+footer, header, menu, nav{
+	display: block;
+}
+
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    min-width: 1024px;
+}
+
+h1,h2,h3,h4 {
+    font-family: 'Cabin', sans-serif;    
+}
+
+/* positioning */
+.fix:after { visibility: hidden; display: block; font-size: 0; content: "."; clear: both; height: 0; }
+/* classes */
+.left { float: left; }
+.right { float: right; }
+.text-center { text-align: center; }
+.wrap { width: 1020px; margin: auto; }
+.pull-top { margin-top: -20px; }
+.push-left { margin-left: 50px }
+/* columns */
+.column-a { width: 500px; }
+.column-b { width: 250px; }
+.column-c { width: 150px; }
+
+
+
+.content h1, .content h2, .content h3, .content h4, .content p, .content ul, .content ol, .content table {
+    margin-bottom: 20px;
+    line-height: 24px;
+}
+
+.content ul, .content ol {
+    margin-left: 50px;
+}
+/* headers */
+.content h1 { font-size: 2em; color: #167f39; }
+.content h2 { font-size: 1.6em; color: #167f39; }
+.content h3 { font-size: 1.4em; color: #000000; }
+.content h4 { font-size: 1.2em; color: #167f39;}
+
+
+
+#top {
+    background-color: #F03939;
+}
+
+#logo {
+    line-height: 60px;
+    color: #fff;
+    font-size: 22px;
+}
+
+#logo a {
+    color: #fff;
+    text-decoration: none;
+}
+
+#topnav > ul > li {
+    float: left;
+    display: inline;
+    line-height: 60px;
+    margin-left: 30px;
+    position: relative;
+}
+
+#topnav > ul > li > a {
+    color: #fff;
+    text-decoration: none;
+}
+
+#topnav > ul > li:hover > a, #topnav > ul > li.active a {
+    color: #9E9FA3;
+}
+
+#topnav > ul > li > ul {
+    position: absolute;
+    display: none;
+    background-color: #044c29;
+    padding: 5px 20px;
+    width: 200px;
+    left: -20px;
+    z-index: 9999;
+}
+
+#topnav > ul > li:hover ul {
+    display: block;
+}
+
+
+#main {
+    padding: 40px 0 20px 0;
+}
+
+
+#footer {
+    background-color: #DF8A8A;
+    color: #fff;
+    padding: 30px 0 0 0;
+}
+
+#footer a {
+    color: #167f39;
+    text-decoration: none;
+}
+
+#footer a:hover {
+    color: #167f39;
+    color: #fff;    
+}
+
+#footer #copyright {
+    background-color: #000000;
+    padding: 20px 0;
+    font-size: 11px;
+}
+
+#footer #copyright a {
+    color: #fff;
+}
+
+.widget ul {
+    margin-left: 0;
+    list-style: none;
+}
+
