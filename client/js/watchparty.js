@@ -2,27 +2,30 @@ var tag = document.createElement('script');
 tag.src = "https://www.youtube.com/iframe_api";
 var firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
 var Sync;
 function onYouTubeIframeAPIReady() {
-    Sync = function(video, player, io) {
+    Sync = function(namespace, video, player, io, width, height) {
         var start = false;
-        var socket = io('/'+video);
-        var height = window.innerHeight*2/3.0;
-        var width = height*16/9.0;
+        var check = false;
+        var socket = io('/'+namespace);
         var last = {command: "buffering", time: null}
         var onPlayerReady = function(event) {
-            player.playVideo();
-            player.pauseVideo();
             keepSync();
         }
         var onPlayerStateChange = function(event) {
             if (start) {
+                console.log(event.data);
                 if (event.data === 1) {
                     console.log("play");
-                    if((last.command!="play"||last.time!=player.getCurrentTime())) {
-                        socket.emit("play", null);
+                    if(check) {
+                        check = false;
+                        pauseVideo(player, last.time);
+                        return;
                     }
+                    if((last.command!="play")) {
+                        socket.emit("play", player.getCurrentTime());
+                    }
+                    last = {command: "buffering", time: null}
                 }
                 // Pause event.
                 else if (event.data === 2) {
@@ -30,6 +33,7 @@ function onYouTubeIframeAPIReady() {
                     if((last.command!="pause"||last.time!=player.getCurrentTime())) {
                         socket.emit("pause", player.getCurrentTime());
                     }
+                    last = {command: "buffering", time: null}
                 }
                 else if (event.data === 3) {
                     console.log("buffering");
@@ -37,10 +41,17 @@ function onYouTubeIframeAPIReady() {
                     //last.time = player.getCurrentTime();
                     //setTimeout(function() {if(last.command=="buffering") socket.emit("check")}, 2000);
                 }
+                else if(event.data === 0) {
+                    console.log("ended");
+                    last.command = "play";
+                    last.time = 0;
+                    playVideo(player, 0);
+                    player.pauseVideo();
+                    socket.emit("ended");
+                }
             }
         }
         var keepSync = function() {
-            start = true
             socket.on('play', function(time) {
                playVideo(player, time); 
                last.command = "play";
@@ -57,11 +68,16 @@ function onYouTubeIframeAPIReady() {
                     last.command = "play";
                     last.time = data.time;
                     playVideo(player, data.time);
+                    start = true;
                 }
                 else {
                     last.command = "pause";
                     last.time = data.time;
-                    pauseVideo(player, data.time);
+                    //playVideo(player, data.time);
+                    //player.pauseVideo();
+                    start = true;
+                    check = true;
+                    player.seekTo(data.time, true);
                 }
             });
             socket.emit('check');

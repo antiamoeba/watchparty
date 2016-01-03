@@ -10,6 +10,11 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
-  "author": "andreagvene, antiamoeba",
+  "author": {
+    "name": "andreagvene"
+  },
+  "contributors": [{
+    "name": "antiamoeba"
+  }],
   "license": "ISC"
 }

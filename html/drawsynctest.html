@@ -1,0 +1,20 @@
+<html>
+    <head>
+        <title>Drawsync</title>
+        <script src="/js/jquery.min.js"></script>
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="/js/whiteboard.js"></script>
+    </head>
+    <body>
+        <div id="biebsdrawer" style="width:600px;height:400px"></div>
+        <button id="clear">Clear</button>
+        <script>
+            $(function() {
+                whiteboard = new Whiteboard("biebs", "#biebsdrawer", io);
+                $("#clear").click(function() {
+                   whiteboard.clear();
+                });
+            });
+        </script>
+    </body>
+</html>

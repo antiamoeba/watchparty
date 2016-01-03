@@ -8,6 +8,7 @@
     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
     
     <link rel="stylesheet" href="css/style.css" type="text/css" />
+    <script src="/js/jquery.min.js"></script>
 </head>
 
 <body>
@@ -37,12 +38,33 @@
                     <img src = "img/add.png" width="30" height="30"/>
                 </p>
                 <p>
-                    <iframe width="640" height="385" src="https://www.youtube.com/embed/PfGaX8G0f2E" frameborder="0"></iframe>
+                    <div id="player"></div>
+                    <script src="/socket.io/socket.io.js"></script>
+                    <script>
+                        function ready() {
+                            console.log(io);
+                            var vid = Sync("{{watchpartyId}}", "{{videoId}}", "player", io, 640, 385);
+                        }
+                    </script>
+                    <script src="/js/watchparty.js"></script>
                 </p>
                 <p>
                     <img href="facebook" src = "img/facebook.png" width="30" height="30"/>
                     <img href="twitter" src = "img/twitter.png" width="30" height="30"/>
                 </p>
+                <p>
+                    <div id="biebsdrawer" style="width:600px;height:400px"></div>
+                    <button id="clear">Clear</button>
+                </p>
+                <script src="/js/whiteboard.js"></script>
+                <script>
+                    $(function() {
+                        whiteboard = new Whiteboard("{{whiteboardId}}", "#biebsdrawer", io);
+                        $("#clear").click(function() {
+                           whiteboard.clear();
+                        });
+                    });
+                </script>
             </div>
 
             <div class="column-b right">

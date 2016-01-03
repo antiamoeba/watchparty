@@ -1,0 +1,23 @@
+<html>
+    <head>
+        <title>Create new WatchParty</title>
+        <script src="/js/jquery.min.js"></script>
+    </head>
+    <body>
+        <h2>Create a new WatchParty</h2>
+        <form id="make">
+            Youtube id:<br>
+            <input type="text" name="videoId" />
+        </form>
+        <script>
+            $(function() {
+                $("#make").submit(function() {
+                    $.post("/create", $(this).serialize(), function(response) {
+                        window.location = "/"+response; 
+                    });
+                    return false;
+                });
+            });
+        </script>
+    </body>
+</html>
